@@ -1,0 +1,3120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nokhpa TEAM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --gold:#d4af37;
+  --gold-light:#f5d76e;
+  --gold-dark:#9c7618;
+  --gold-soft:rgba(212,175,55,.18);
+
+  --bg:#070707;
+  --bg2:#101010;
+  --card:#111111;
+
+  --text:#f7f2df;
+  --text2:#c9c0a8;
+  --text3:#91876e;
+
+  --border:rgba(212,175,55,.22);
+
+  --success:#20c77a;
+  --danger:#ef4444;
+
+  --radius:18px;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:#d4af37 #050505;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.08),transparent 35%),
+    #070707;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(212,175,55,.035),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(212,175,55,.035),transparent 25%);
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+#prog-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  z-index:9999;
+  background:linear-gradient(
+    90deg,
+    #8f6b16,
+    #d4af37,
+    #fff1a8,
+    #d4af37,
+    #8f6b16
+  );
+  box-shadow:0 0 14px rgba(212,175,55,.8);
+  transition:width .3s ease;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(212,175,55,.35);
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,.5),
+    0 1px 0 rgba(212,175,55,.08);
+}
+
+.nav-back{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:#e9d88d;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:700;
+
+  padding:8px 13px;
+
+  border-radius:9px;
+  border:1px solid rgba(212,175,55,.35);
+
+  background:#0d0d0d;
+
+  transition:.3s;
+}
+
+.nav-back:hover{
+  color:#fff;
+  border-color:#d4af37;
+  transform:translateX(3px);
+  box-shadow:0 0 18px rgba(212,175,55,.18);
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#f5d76e;
+  font-size:15px;
+  font-weight:900;
+}
+
+.nav-logo-icon{
+  width:35px;
+  height:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#080808;
+  font-size:11px;
+  font-weight:900;
+
+  border:1px solid rgba(255,225,120,.8);
+
+  box-shadow:
+    0 0 18px rgba(212,175,55,.28),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.theme-btn{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0d0d0d;
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.3s;
+}
+
+.theme-btn:hover{
+  border-color:#d4af37;
+  transform:rotate(20deg);
+  box-shadow:0 0 18px rgba(212,175,55,.2);
+}
+
+/* HERO */
+
+.hero-band{
+  position:relative;
+  overflow:hidden;
+
+  margin-top:64px;
+
+  padding:44px 24px 38px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      ellipse 650px 260px at 50% 115%,
+      rgba(212,175,55,.22),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #030303 0%,
+      #0b0b0b 42%,
+      #151208 65%,
+      #000 100%
+    );
+
+  border-bottom:1px solid rgba(212,175,55,.55);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.55),
+    inset 0 -1px 0 rgba(212,175,55,.2);
+}
+
+.hero-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse 700px 220px at 50% 100%,
+      rgba(245,215,110,.15),
+      transparent 70%
+    );
+}
+
+.hero-band::after{
+  content:"";
+  position:absolute;
+
+  left:-10%;
+  right:-10%;
+  bottom:-85px;
+
+  height:150px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(212,175,55,.14),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+.hero-band-icon{
+  position:relative;
+  z-index:1;
+
+  width:70px;
+  height:70px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 15px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#090909;
+
+  border:1px solid rgba(255,230,130,.85);
+
+  font-size:30px;
+
+  box-shadow:
+    0 0 25px rgba(212,175,55,.25),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.hero-band h1{
+  position:relative;
+  z-index:1;
+
+  color:#fff7d0;
+
+  font-size:clamp(22px,4vw,31px);
+  font-weight:900;
+
+  margin-bottom:7px;
+
+  text-shadow:
+    0 2px 15px rgba(212,175,55,.25);
+}
+
+.hero-band p{
+  position:relative;
+  z-index:1;
+
+  color:#cfc39b;
+
+  font-size:13px;
+}
+
+.hero-band-meta{
+  position:relative;
+  z-index:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:14px;
+
+  margin-top:20px;
+
+  flex-wrap:wrap;
+}
+
+.meta-pill{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 16px;
+
+  border-radius:50px;
+
+  background:rgba(212,175,55,.08);
+
+  border:1px solid rgba(212,175,55,.38);
+
+  color:#f5d76e;
+
+  font-size:12px;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 15px rgba(0,0,0,.25);
+}
+
+/* MAIN */
+
+.shell{
+  width:100%;
+  max-width:760px;
+
+  margin:0 auto;
+
+  padding:28px 20px 80px;
+}
+
+/* STATS */
+
+.stats-row{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.stat-box{
+  padding:13px 10px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(212,175,55,.025)
+    );
+
+  border:1px solid rgba(212,175,55,.22);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.03);
+
+  transition:.3s;
+}
+
+.stat-box:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(212,175,55,.5);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.45),
+    0 0 20px rgba(212,175,55,.08);
+}
+
+.stat-box .val{
+  font-size:21px;
+  font-weight:900;
+}
+
+.stat-box .lbl{
+  margin-top:2px;
+
+  color:var(--text3);
+
+  font-size:11px;
+}
+
+.stat-correct{
+  color:var(--success);
+}
+
+.stat-wrong{
+  color:var(--danger);
+}
+
+.stat-remain{
+  color:#d4af37;
+}
+
+/* PROGRESS */
+
+.prog-strip{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  padding:14px 16px;
+
+  margin-bottom:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #101010,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.prog-label{
+  color:#d8cfb5;
+
+  font-size:13px;
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.prog-track{
+  flex:1;
+
+  height:8px;
+
+  background:#050505;
+
+  border:1px solid rgba(212,175,55,.12);
+
+  border-radius:8px;
+
+  overflow:hidden;
+}
+
+.prog-fill{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #d4af37
+    );
+
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+
+  border-radius:8px;
+
+  transition:width .4s;
+}
+
+.timer-badge{
+  min-width:70px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+  padding:0 12px;
+
+  flex-shrink:0;
+
+  border-radius:18px;
+
+  background:#0a0a0a;
+
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.45);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.timer-badge.warn{
+  color:#f5d76e;
+  border-color:rgba(212,175,55,.7);
+}
+
+.timer-badge.danger{
+  color:#ef4444;
+  border-color:rgba(239,68,68,.5);
+
+  animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.55}
+}
+
+/* QUESTION */
+
+.q-card{
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.28);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.5),
+    0 0 25px rgba(212,175,55,.035),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.q-header{
+  display:flex;
+  align-items:center;
+
+  padding:7px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #b58b22
+    );
+
+  box-shadow:
+    0 4px 20px rgba(212,175,55,.15);
+}
+
+.q-num{
+  padding:4px 11px;
+
+  border-radius:8px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(255,255,255,.18);
+
+  color:#fff9d9;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.q-text{
+  padding:22px 18px 15px;
+
+  color:#f5f1e5;
+
+  font-size:15px;
+  font-weight:700;
+
+  line-height:1.7;
+
+  border-bottom:1px solid rgba(212,175,55,.15);
+
+  text-align:left;
+  direction:ltr;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  padding:18px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:14px 16px;
+
+  min-height:55px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151515,
+      #0d0d0d
+    );
+
+  border:1.5px solid rgba(212,175,55,.18);
+
+  color:#eee8d8;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  direction:ltr;
+  text-align:left;
+
+  user-select:none;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.opt:hover:not(.disabled){
+  border-color:#d4af37;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(212,175,55,.12),
+      rgba(212,175,55,.035)
+    );
+
+  transform:translateX(5px);
+
+  box-shadow:
+    0 5px 20px rgba(212,175,55,.1),
+    inset 0 0 15px rgba(212,175,55,.03);
+}
+
+.opt-letter{
+  width:29px;
+  height:29px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:8px;
+
+  background:#0a0a0a;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.opt.correct{
+  border-color:#20c77a;
+  background:rgba(32,199,122,.07);
+}
+
+.opt.correct .opt-letter{
+  background:#20c77a;
+  border-color:#20c77a;
+  color:#fff;
+}
+
+.opt.wrong{
+  border-color:#ef4444;
+  background:rgba(239,68,68,.07);
+}
+
+.opt.wrong .opt-letter{
+  background:#ef4444;
+  border-color:#ef4444;
+  color:#fff;
+}
+
+.opt.disabled{
+  pointer-events:none;
+}
+
+/* FEEDBACK */
+
+.feedback-bar{
+  margin:0 18px 14px;
+
+  padding:12px 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:800;
+
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.feedback-bar.ok{
+  background:rgba(32,199,122,.08);
+  color:#20c77a;
+  border:1px solid rgba(32,199,122,.25);
+}
+
+.feedback-bar.no{
+  background:rgba(239,68,68,.08);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.22);
+}
+
+.feedback-icon{
+  font-size:20px;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* EXPLANATION */
+
+.explanation{
+  margin:0 18px 14px;
+
+  padding:12px 14px;
+
+  background:rgba(212,175,55,.045);
+
+  border-radius:10px;
+
+  border-right:3px solid #d4af37;
+
+  color:#d8cfb5;
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.nav-btns{
+  display:flex;
+  gap:10px;
+
+  padding:4px 18px 18px;
+}
+
+.btn{
+  flex:1;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  transition:.3s;
+}
+
+.btn-next,
+.btn-retry{
+  background:
+    linear-gradient(
+      135deg,
+      #9c7618,
+      #d4af37,
+      #f5d76e
+    );
+
+  color:#080808;
+
+  box-shadow:
+    0 6px 20px rgba(212,175,55,.2);
+}
+
+.btn-next:hover,
+.btn-retry:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 28px rgba(212,175,55,.3);
+}
+
+.btn-skip,
+.btn-home{
+  background:#111;
+
+  color:#cfc39b;
+
+  border:1px solid rgba(212,175,55,.22);
+}
+
+.btn-skip{
+  flex:0 0 auto;
+  padding:13px 18px;
+}
+
+.btn-skip:hover,
+.btn-home:hover{
+  border-color:#d4af37;
+  color:#f5d76e;
+}
+
+/* RESULTS */
+
+.result-hero{
+  text-align:center;
+
+  padding:30px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #090909
+    );
+
+  border:1px solid rgba(212,175,55,.3);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(212,175,55,.04);
+}
+
+.score-ring{
+  width:120px;
+  height:120px;
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  margin:0 auto 18px;
+}
+
+.score-ring svg{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  transform:rotate(-90deg);
+}
+
+.score-ring circle{
+  fill:none;
+
+  stroke-width:5;
+
+  stroke-linecap:round;
+}
+
+.ring-bg{
+  stroke:#242019;
+}
+
+.ring-fill{
+  stroke:#d4af37;
+
+  transition:stroke-dashoffset 1s ease;
+}
+
+.score-num{
+  position:relative;
+
+  font-size:28px;
+  font-weight:900;
+}
+
+.score-pct{
+  position:relative;
+
+  color:var(--text3);
+
+  font-size:12px;
+}
+
+.result-grade{
+  margin-bottom:7px;
+
+  color:#f5d76e;
+
+  font-size:23px;
+  font-weight:900;
+}
+
+.result-sub{
+  color:var(--text2);
+
+  font-size:14px;
+}
+
+.result-stats{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.rs{
+  padding:12px 8px;
+
+  background:#101010;
+
+  border:1px solid rgba(212,175,55,.15);
+
+  border-radius:10px;
+}
+
+.rs .n{
+  font-size:20px;
+  font-weight:900;
+}
+
+.rs .l{
+  color:var(--text3);
+  font-size:11px;
+}
+
+/* REPORT */
+
+.report-title{
+  margin:28px 0 12px;
+
+  color:var(--text2);
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.report-item{
+  margin-bottom:10px;
+
+  padding:16px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-right:4px solid var(--border);
+
+  border-radius:14px;
+}
+
+.report-item.ok{
+  border-right-color:var(--success);
+}
+
+.report-item.no{
+  border-right-color:var(--danger);
+}
+
+.ri-q{
+  margin-bottom:8px;
+
+  font-size:13px;
+  font-weight:700;
+
+  line-height:1.6;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-row{
+  display:flex;
+  align-items:flex-start;
+
+  gap:8px;
+
+  margin-top:6px;
+
+  color:var(--text2);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-badge{
+  padding:2px 8px;
+
+  flex-shrink:0;
+
+  border-radius:6px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.ri-yours{
+  background:rgba(239,68,68,.1);
+  color:#ef4444;
+}
+
+.ri-right{
+  background:rgba(32,199,122,.1);
+  color:#20c77a;
+}
+
+.result-actions{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+/* INPUTS */
+
+.student-box{
+  text-align:right;
+
+  margin-bottom:14px;
+}
+
+.student-label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--text2);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.student-input{
+  width:100%;
+
+  padding:13px 14px;
+
+  background:#0c0c0c;
+
+  color:var(--text);
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:14px;
+
+  transition:.3s;
+}
+
+.student-input:focus{
+  border-color:#d4af37;
+
+  box-shadow:0 0 15px rgba(212,175,55,.1);
+}
+
+.student-error{
+  display:none;
+
+  margin-bottom:12px;
+
+  padding:10px;
+
+  color:#ef4444;
+
+  background:rgba(239,68,68,.08);
+
+  border:1px solid rgba(239,68,68,.2);
+
+  border-radius:10px;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  padding:22px 24px;
+
+  background:#050505;
+
+  border-top:1px solid rgba(212,175,55,.28);
+
+  box-shadow:
+    0 -5px 25px rgba(0,0,0,.35);
+}
+
+.footer-brand{
+  color:#d8cfb5;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.footer-brand span{
+  color:#d4af37;
+}
+
+.footer-tg{
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  nav{
+    padding:0 14px;
+  }
+
+  .nav-brand span{
+    display:none;
+  }
+
+  .hero-band{
+    padding:36px 14px 32px;
+  }
+
+  .hero-band h1{
+    font-size:24px;
+  }
+
+  .meta-pill{
+    padding:6px 12px;
+  }
+
+  .shell{
+    padding:22px 12px 60px;
+  }
+
+  .stats-row{
+    gap:7px;
+  }
+
+  .stat-box{
+    padding:11px 6px;
+  }
+
+  .prog-strip{
+    gap:8px;
+  }
+
+  .prog-label{
+    font-size:11px;
+  }
+
+  .timer-badge{
+    min-width:65px;
+    padding:0 8px;
+    font-size:12px;
+  }
+
+  .q-card{
+    border-radius:16px;
+  }
+
+  .q-text{
+    font-size:14px;
+  }
+
+  .opt{
+    font-size:13px;
+    padding:13px;
+  }
+
+  footer{
+    padding:20px 14px;
+  }
+}
+/* ===== Luxury WhatsApp Contact ===== */
+
+.contact-section {
+  margin: 35px auto 10px;
+  max-width: 650px;
+  text-align: center;
+}
+
+.contact-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.contact-title h3 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-line {
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.contact-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(212,175,55,.10),
+    rgba(255,255,255,.025)
+  );
+  color: var(--text);
+  text-decoration: none;
+  text-align: right;
+  transition: .3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px rgba(212,175,55,.15);
+}
+
+.contact-btn i {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 23px;
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,.25);
+  background: rgba(212,175,55,.08);
+}
+
+.contact-btn:hover i {
+  background: var(--gold);
+  color: #080808;
+}
+
+.contact-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-btn strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.contact-btn small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="prog-bar"></div>
+
+<nav>
+
+  <a href="../index.html" class="nav-back">
+    <i class="fa-solid fa-arrow-right"></i>
+    رجوع
+  </a>
+
+  <div class="nav-brand">
+    <div class="nav-logo-icon">NT</div>
+    <span>Nokhpa TEAM</span>
+  </div>
+
+  <div class="nav-right">
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      type="button"
+      aria-label="Change theme"
+    >
+      ☀️
+    </button>
+  </div>
+
+</nav>
+
+<section class="hero-band">
+
+  <div class="hero-band-icon">
+    👼🏻
+  </div>
+
+  <h1>Pediatric nursing</h1>
+
+  <p>Comprehensive Pediatric nursing Growth and development </p>
+
+  <div class="hero-band-meta">
+
+    <div class="meta-pill">
+      📚
+      <span id="totalBadge">0 سؤال</span>
+    </div>
+
+    <div class="meta-pill">
+      ⏱️ 60 Min
+    </div>
+
+    <div class="meta-pill">
+      🔀 Shuffled
+    </div>
+
+  </div>
+
+</section>
+
+<main class="shell">
+
+  <div class="stats-row">
+
+    <div class="stat-box">
+      <div class="val stat-correct" id="sCorrect">0</div>
+      <div class="lbl">صحيح</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-wrong" id="sWrong">0</div>
+      <div class="lbl">خطأ</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-remain" id="sRemain">100%</div>
+      <div class="lbl">متبقي</div>
+    </div>
+
+  </div>
+
+  <div class="prog-strip">
+
+    <div class="prog-label" id="progLabel">
+      سؤال 1
+    </div>
+
+    <div class="prog-track">
+      <div class="prog-fill" id="progFill"></div>
+    </div>
+
+    <div class="timer-badge" id="timerBadge">
+      ⏱️
+      <span id="timerTxt">60:00</span>
+    </div>
+
+  </div>
+
+  <div id="app"></div>
+
+</main>
+
+<footer>
+
+  <div class="footer-brand">
+    Nokhpa <span>TEAM</span>
+  </div>
+
+  <div class="footer-tg">
+    ✦ Nursing Process
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+const QUESTIONS = [
+  {
+    t: "Growth is a continuous process that involves quantitative changes in the physical size of the body.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which of the following best describes the cephalocaudal pattern?",
+    o: [
+      "Development proceeds from the extremities toward the body center",
+      "Muscular development proceeds from the head toward the feet",
+      "Fine muscle control develops before gross muscle control",
+      "Development proceeds from the feet toward the head"
+    ],
+    a: 1
+  },
+  {
+    t: "In the cephalocaudal pattern, a child gains control of the legs and feet before controlling the neck.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Which example best demonstrates the proximodistal pattern of development?",
+    o: [
+      "A child controls the neck before the legs",
+      "A child develops head control before foot control",
+      "Development progresses from the body midline toward the fingers and toes",
+      "A child develops emotional trust before social relationships"
+    ],
+    a: 2
+  },
+  {
+    t: "According to the lecture, growth and development follow a universal sequence, although the rate differs among children.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which statement represents an important principle of growth and development?",
+    o: [
+      "All children develop at exactly the same rate",
+      "Each stage is independent of the preceding stage",
+      "Each child has an individual growth pattern within the normal rate",
+      "Physical development occurs independently of emotional development"
+    ],
+    a: 2
+  },
+  {
+    t: "Intellectual, neuromuscular, emotional, and social behavioral aspects can always be considered independently.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A nurse measures a child's weight, height, and head circumference. These measurements primarily assess:",
+    o: [
+      "Physiological growth",
+      "Physical growth",
+      "Social development",
+      "Emotional development"
+    ],
+    a: 1
+  },
+  {
+    t: "Which of the following is NOT listed as a type of growth and development in the lecture?",
+    o: [
+      "Motor development",
+      "Social development",
+      "Physiological growth",
+      "Financial development"
+    ],
+    a: 3
+  },
+  {
+    t: "The acquisition of social relations is included in the definition of development.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which prenatal factor is associated with a positive correlation with offspring height?",
+    o: [
+      "Maternal emotional status",
+      "Parental height",
+      "Seasonal changes",
+      "Oxygen concentration"
+    ],
+    a: 1
+  },
+  {
+    t: "Congenital rubella in the mother is mentioned as a disease that may lead to:",
+    o: [
+      "Malformed baby",
+      "Increased height",
+      "Early tooth eruption",
+      "Increased muscle power"
+    ],
+    a: 0
+  },
+  {
+    t: "According to the lecture, hereditary disorders may lead to dwarfism.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which maternal drug exposure is associated with limb and cardiac malformations?",
+    o: [
+      "Amphetamine",
+      "Thalidomide",
+      "Corticosteroids",
+      "Cytotoxic drugs"
+    ],
+    a: 1
+  },
+  {
+    t: "Amphetamine exposure during pregnancy is associated with congenital heart problems according to the lecture.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which drug is associated with intrauterine growth retardation, microcephaly, cleft palate, and deafness?",
+    o: [
+      "Thalidomide",
+      "Amphetamine",
+      "Cytotoxic drugs",
+      "Low-dose corticosteroids"
+    ],
+    a: 2
+  },
+  {
+    t: "High doses of corticosteroids during pregnancy are associated with cleft palate.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Severe maternal malnutrition during the prenatal period may negatively influence which aspects of the fetus?",
+    o: [
+      "Physical and mental state",
+      "Only social relationships",
+      "Only emotional development",
+      "Only seasonal growth"
+    ],
+    a: 0
+  },
+  {
+    t: "The fetus is always unable to obtain adequate nutrition unless the mother consumes excessive amounts of food.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Which environmental factor is directly correlated with the weight and height of people according to the lecture?",
+    o: [
+      "Annual temperature of the locality",
+      "Ordinal position in the family",
+      "Maternal age only",
+      "Emotional status of the child"
+    ],
+    a: 0
+  },
+  {
+    t: "People living at high altitudes tend to be lighter in weight and shorter in length.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "According to the seasonal growth pattern, when does height tend to increase more rapidly?",
+    o: [
+      "Autumn and winter",
+      "Spring and summer",
+      "Winter only",
+      "Autumn only"
+    ],
+    a: 1
+  },
+  {
+    t: "Weight gain proceeds more rapidly during spring and summer than during autumn and winter.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Children suffering from disorders that produce chronic hypoxia tend to be:",
+    o: [
+      "Larger than children of the same chronological age",
+      "Smaller than children of the same chronological age",
+      "Equal in height but always heavier",
+      "Unaffected in physical growth"
+    ],
+    a: 1
+  },
+  {
+    t: "Exposure to chemicals, radiation, or smoke after the second trimester may produce small-sized infants.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The socioeconomic state of the family is described as affecting which measurements more than weight?",
+    o: [
+      "Temperature and pulse",
+      "Height and head circumference",
+      "Respiration and blood pressure",
+      "Skin fold thickness and temperature"
+    ],
+    a: 1
+  },
+  {
+    t: "Physical localized trauma, such as poliomyelitis, may result in reduced growth of the affected limb.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which group of hormones is mentioned as stimulating protein anabolism and supporting the building of protoplasm and bony tissue?",
+    o: [
+      "Growth hormone, thyroid hormone, and androgen hormone",
+      "Growth hormone, insulin, and corticosteroids",
+      "Thyroid hormone, estrogen, and insulin",
+      "Androgen hormone, adrenaline, and corticosteroids"
+    ],
+    a: 0
+  },
+  {
+    t: "Hormonal factors have no role in the retention of elements essential for building protoplasm and bony tissue.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "According to the lecture, which statement about gender differences is correct?",
+    o: [
+      "There are major differences between boys and girls at every stage",
+      "There is little actual difference between girls and boys",
+      "Girls always have greater muscle power than boys",
+      "Gender has no influence on growth and development"
+    ],
+    a: 1
+  },
+  {
+    t: "Boys are described as having stronger muscle power than girls, especially during adolescence.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Maternal deprivation and emotional deprivation may lead to weight loss mainly because of:",
+    o: [
+      "Excessive physical activity",
+      "Lack of love and refusal of food",
+      "Increased oxygen concentration",
+      "Rapid bone development"
+    ],
+    a: 1
+  },
+  {
+    t: "The ordinal position of a child in the family is mentioned among the factors influencing growth.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which of the following is classified as an internal postnatal factor?",
+    o: [
+      "Seasonal changes",
+      "Geographic location",
+      "Endocrinal factors",
+      "Environmental hazards"
+    ],
+    a: 2
+  },
+  {
+    t: "Growth monitoring is an essential part of the pediatric physical examination.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Which is NOT a purpose of growth monitoring?",
+    o: [
+      "Detecting disorders during childhood",
+      "Guiding treatment and follow-up",
+      "Identifying variations from typical growth",
+      "Determining the child's nationality"
+    ],
+    a: 3
+  },
+  {
+    t: "Growth monitoring can identify variations from typical growth caused by poor nutrition or chronic illness.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Early detection of growth faltering is important because it allows the nurse to:",
+    o: [
+      "Stop all growth measurements",
+      "Undertake appropriate corrective actions",
+      "Ignore minor changes in weight",
+      "Replace physical examination with observation"
+    ],
+    a: 1
+  },
+  {
+    t: "The lecture highlights increasing attention to children's growth because of the rising incidence of childhood obesity.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "According to the recommended growth monitoring schedule, how often should a child's weight ideally be measured until two years of age?",
+    o: [
+      "Once every three months",
+      "Once every six months",
+      "Once a month",
+      "Once a year"
+    ],
+    a: 2
+  },
+  {
+    t: "After the age of two years, the child's weight should ideally be measured every three months until five years of age.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "At what age does the lecture recommend starting weight measurements?",
+    o: [
+      "At six months",
+      "At one year",
+      "At birth",
+      "At two years"
+    ],
+    a: 2
+  },
+  {
+    t: "The nurse records the baby's weight on the growth chart or Road to Health Chart.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Why does the nurse compare the child's weight with age?",
+    o: [
+      "To determine the child's emotional status",
+      "To check whether the weight falls within the acceptable range for the child's age",
+      "To determine the child's genetic characteristics",
+      "To assess the child's blood pressure"
+    ],
+    a: 1
+  },
+  {
+    t: "Which of the following is mentioned as a method used by the nurse to assess growth?",
+    o: [
+      "Observation of problem-solving ability only",
+      "Measurement of head circumference and thoracic diameter",
+      "Assessment of social relationships only",
+      "Observation of emotional responses only"
+    ],
+    a: 1
+  },
+  {
+    t: "Observation of fontanel closure and teeth eruption can help the nurse assess a child's growth.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "How does the nurse primarily assess a child's development according to the lecture?",
+    o: [
+      "By measuring weight and height only",
+      "By observing motor, social, mental, and emotional development",
+      "By measuring thoracic diameter only",
+      "By checking temperature and blood pressure only"
+    ],
+    a: 1
+  },
+  {
+    t: "Growth monitoring forms the basis of comprehensive child health care.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "A nurse observes a child sitting, standing, and running. These observations are primarily related to:",
+    o: [
+      "Social development",
+      "Motor development",
+      "Physiological growth",
+      "Emotional development"
+    ],
+    a: 1
+  }
+];
+/* =====================================================
+   ENGINE
+===================================================== */
+
+let questions=[];
+let current=0;
+let correct=0;
+let wrong=0;
+let answered=0;
+
+let answers=[];
+let wrongSet=[];
+
+let totalTime=60*60;
+let timeLeft=totalTime;
+let timerInterval=null;
+
+let studentName="";
+let studentCode="";
+
+// تثبيت نتيجة الامتحان الأصلي وفصل مراجعة الأخطاء
+let reviewMode = false;
+let originalResult = null;
+
+const LETTERS=["A","B","C","D","E","F"];
+
+
+/* SHUFFLE */
+
+function shuffle(array){
+
+  const arr=[...array];
+
+  for(let x=arr.length-1;x>0;x--){
+
+    const y=Math.floor(Math.random()*(x+1));
+
+    [arr[x],arr[y]]=[arr[y],arr[x]];
+
+  }
+
+  return arr;
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* INIT */
+
+function init(pool, isReview = false){
+
+  clearInterval(timerInterval);
+
+  // المراجعة منفصلة عن الامتحان الأصلي
+  if(!isReview){
+    reviewMode = false;
+    originalResult = null;
+  }else{
+    reviewMode = true;
+  }
+
+  questions=shuffle(pool);
+
+  current=0;
+  correct=0;
+  wrong=0;
+  answered=0;
+
+  answers=new Array(questions.length).fill(null);
+  wrongSet=[];
+
+  timeLeft=totalTime;
+
+  document.getElementById("totalBadge").textContent=
+    questions.length+" سؤال";
+
+  startTimer();
+
+  render();
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timerInterval);
+
+  updateTimer();
+
+  timerInterval=setInterval(()=>{
+
+    timeLeft--;
+
+    updateTimer();
+
+    if(timeLeft<=0){
+
+      clearInterval(timerInterval);
+
+      finish();
+
+    }
+
+  },1000);
+
+}
+
+
+function updateTimer(){
+
+  const min=Math.floor(timeLeft/60);
+
+  const sec=timeLeft%60;
+
+  const timer=document.getElementById("timerTxt");
+
+  const badge=document.getElementById("timerBadge");
+
+  timer.textContent=
+    `${min}:${sec<10?"0":""}${sec}`;
+
+  badge.className="timer-badge";
+
+  if(timeLeft<=120){
+
+    badge.classList.add("danger");
+
+  }else if(timeLeft<=300){
+
+    badge.classList.add("warn");
+
+  }
+
+}
+
+
+/* TOP */
+
+function updateTop(){
+
+  const total=questions.length;
+
+  document.getElementById("sCorrect").textContent=correct;
+
+  document.getElementById("sWrong").textContent=wrong;
+
+  const remaining=total-answered;
+
+  document.getElementById("sRemain").textContent=
+    Math.round((remaining/total)*100)+"%";
+
+  document.getElementById("progLabel").textContent=
+    "سؤال "+(current+1)+" / "+total;
+
+  const percent=((current+1)/total)*100;
+
+  document.getElementById("progFill").style.width=
+    percent+"%";
+
+  document.getElementById("prog-bar").style.width=
+    percent+"%";
+
+}
+
+
+/* RENDER */
+
+function render(){
+
+  updateTop();
+
+  const q=questions[current];
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="q-card">
+
+      <div class="q-header">
+
+        <div class="q-num">
+          سؤال ${current+1} / ${questions.length}
+        </div>
+
+      </div>
+
+
+      <div class="q-text">
+        ${escapeHTML(q.t)}
+      </div>
+
+
+      <div class="options">
+
+        ${q.o.map((option,index)=>`
+
+          <div
+            class="opt"
+            id="opt${index}"
+            onclick="choose(${index})"
+          >
+
+            <div class="opt-letter">
+              ${LETTERS[index] || index+1}
+            </div>
+
+            <div>
+              ${escapeHTML(option)}
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="nav-btns">
+
+        <button
+          class="btn btn-skip"
+          type="button"
+          onclick="skip()"
+        >
+
+          <i class="fa-solid fa-forward"></i>
+
+          تخطي
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* CHOOSE */
+
+function choose(answer){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  const q=questions[current];
+
+  answers[current]=answer;
+
+  answered++;
+
+  const isCorrect=
+    answer===q.a;
+
+  if(isCorrect){
+
+    correct++;
+
+  }else{
+
+    wrong++;
+
+  }
+
+  updateTop();
+
+
+  q.o.forEach((_,index)=>{
+
+    const option=
+      document.getElementById("opt"+index);
+
+    option.classList.add("disabled");
+
+    if(index===q.a){
+
+      option.classList.add("correct");
+
+    }
+
+    if(index===answer && answer!==q.a){
+
+      option.classList.add("wrong");
+
+    }
+
+  });
+
+
+  const card=
+    document.querySelector(".q-card");
+
+  const feedback=
+    document.createElement("div");
+
+  feedback.className=
+    "feedback-bar "+(isCorrect?"ok":"no");
+
+  feedback.innerHTML=isCorrect
+    ? `<span class="feedback-icon">🎉</span>
+       <span>إجابة صحيحة ✔</span>`
+    : `<span class="feedback-icon">😔</span>
+       <span>إجابة خاطئة ✖</span>`;
+
+  card
+    .querySelector(".options")
+    .after(feedback);
+
+
+  const nav=
+    card.querySelector(".nav-btns");
+
+  nav.innerHTML=`
+
+    <button
+      class="btn btn-next"
+      type="button"
+      onclick="next()"
+    >
+
+      ${
+        current<questions.length-1
+        ? '<i class="fa-solid fa-arrow-left"></i> السؤال التالي'
+        : '<i class="fa-solid fa-flag-checkered"></i> إنهاء الامتحان'
+      }
+
+    </button>
+
+  `;
+
+}
+
+
+/* SKIP */
+
+function skip(){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  answers[current]=-1;
+
+  answered++;
+
+  next();
+
+}
+
+
+/* NEXT */
+
+function next(){
+
+  if(current<questions.length-1){
+
+    current++;
+
+    render();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }else{
+
+    finish();
+
+  }
+
+}
+
+
+/* STUDENT FORM */
+
+function showStudentForm(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="
+        font-size:45px;
+        margin-bottom:12px;
+      ">
+        📝
+      </div>
+
+
+      <div class="result-grade">
+        بيانات الطالب
+      </div>
+
+
+      <div class="result-sub"
+        style="margin-bottom:22px;"
+      >
+        من فضلك اكتب اسمك وكود الكشف قبل عرض النتيجة
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          الاسم
+        </label>
+
+        <input
+          id="studentNameInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب اسمك بالكامل"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          كود الكشف
+        </label>
+
+        <input
+          id="studentCodeInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب كود الكشف"
+        >
+
+      </div>
+
+
+      <div
+        id="studentError"
+        class="student-error"
+      >
+        من فضلك اكتب الاسم وكود الكشف
+      </div>
+
+
+      <button
+        class="btn btn-next"
+        type="button"
+        onclick="saveStudentInfo()"
+      >
+
+        ✅ تأكيد وعرض النتيجة
+
+      </button>
+
+    </div>
+
+  `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SAVE STUDENT */
+
+function saveStudentInfo(){
+
+  const name=
+    document
+      .getElementById("studentNameInput")
+      .value
+      .trim();
+
+  const code=
+    document
+      .getElementById("studentCodeInput")
+      .value
+      .trim();
+
+  const error=
+    document.getElementById("studentError");
+
+  if(!name || !code){
+
+    error.style.display="block";
+
+    return;
+
+  }
+
+  studentName=name;
+  studentCode=code;
+
+  finish(true);
+
+}
+
+
+/* FINISH */
+
+function finish(showResult=false){
+
+  // عند انتهاء مراجعة الأخطاء، اعرض نتيجة التدريب فقط
+  if(reviewMode && !showResult){
+    clearInterval(timerInterval);
+    showReviewResult();
+    return;
+  }
+
+  if(!showResult){
+    showStudentForm();
+    return;
+  }
+
+  // لا تسمح للمراجعة بتغيير الدرجة الأصلية
+  if(reviewMode){
+    showReviewResult();
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+
+  const score=
+    Math.round((correct/total)*100);
+
+
+  wrongSet=questions
+    .map((q,index)=>{
+
+      if(answers[index]!==q.a){
+
+        return {
+          ...q,
+          myAns:answers[index]
+        };
+
+      }
+
+      return null;
+
+    })
+    .filter(Boolean);
+
+
+  let grade;
+  let gradeColor;
+
+
+  if(score>=90){
+
+    grade="🥇 ممتاز";
+    gradeColor="var(--success)";
+
+  }else if(score>=75){
+
+    grade="🥈 جيد جداً";
+    gradeColor="var(--gold-light)";
+
+  }else if(score>=60){
+
+    grade="🥉 جيد";
+    gradeColor="var(--gold)";
+
+  }else{
+
+    grade="📚 راجع تاني";
+    gradeColor="var(--danger)";
+
+  }
+
+
+  const circumference=
+    2*Math.PI*45;
+
+  const offset=
+    circumference-(score/100)*circumference;
+
+
+  const reportHTML=
+    questions.map((q,index)=>{
+
+      const isCorrect=
+        answers[index]===q.a;
+
+      const yourAnswer=
+        answers[index]>=0
+        ? escapeHTML(q.o[answers[index]])
+        : "تم التخطي";
+
+
+      return `
+
+        <div class="report-item ${isCorrect?"ok":"no"}">
+
+          <div class="ri-q">
+
+            ${isCorrect?"✅":"❌"}
+
+            ${escapeHTML(q.t)}
+
+          </div>
+
+
+          ${
+            !isCorrect
+            ? `
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-yours">
+                  إجابتك
+                </span>
+
+                <span>
+                  ${yourAnswer}
+                </span>
+
+              </div>
+
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-right">
+                  الصحيح
+                </span>
+
+                <span>
+                  ${escapeHTML(q.o[q.a])}
+                </span>
+
+              </div>
+
+            `
+            :""
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("prog-bar").style.width="100%";
+
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+
+      <div style="
+        background:var(--bg2);
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px;
+        margin-bottom:20px;
+        text-align:right;
+      ">
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          اسم الطالب
+        </div>
+
+        <div style="
+          font-size:17px;
+          font-weight:900;
+          color:var(--text);
+          margin-bottom:12px;
+        ">
+          ${escapeHTML(studentName)}
+        </div>
+
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          كود الكشف
+        </div>
+
+        <div style="
+          font-size:16px;
+          font-weight:900;
+          color:var(--gold);
+        ">
+          ${escapeHTML(studentCode)}
+        </div>
+
+      </div>
+
+
+      <div class="score-ring">
+
+        <svg viewBox="0 0 110 110">
+
+          <circle
+            class="ring-bg"
+            cx="55"
+            cy="55"
+            r="45"
+          />
+
+          <circle
+            class="ring-fill"
+            cx="55"
+            cy="55"
+            r="45"
+            stroke="${gradeColor}"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${circumference}"
+            id="ringFill"
+          />
+
+        </svg>
+
+
+        <div class="score-num">
+          ${score}
+        </div>
+
+        <div class="score-pct">
+          %
+        </div>
+
+      </div>
+
+
+      <div
+        class="result-grade"
+        style="color:${gradeColor}"
+      >
+        ${grade}
+      </div>
+
+
+      <div class="result-sub">
+
+        أجبت على ${answered} من ${total} سؤال
+
+      </div>
+
+
+      <div class="result-stats">
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--success)"
+          >
+            ${correct}
+          </div>
+
+          <div class="l">
+            صحيح
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--danger)"
+          >
+            ${wrong}
+          </div>
+
+          <div class="l">
+            خطأ
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--gold)"
+          >
+            ${total-answered}
+          </div>
+
+          <div class="l">
+            تخطي
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="result-actions">
+
+
+      ${
+        wrongSet.length
+        ? `
+
+          <button
+            class="btn btn-retry"
+            type="button"
+            onclick="retryWrong()"
+          >
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            إعادة الخطأ (${wrongSet.length})
+
+          </button>
+
+        `
+        :""
+      }
+
+
+      <button
+        class="btn btn-home"
+        type="button"
+        onclick="init(QUESTIONS)"
+      >
+
+        <i class="fa-solid fa-shuffle"></i>
+
+        امتحان جديد عشوائي
+
+      </button>
+
+
+      <a
+        href="../index.html"
+        class="btn btn-home"
+        style="text-decoration:none;"
+      >
+
+        <i class="fa-solid fa-house"></i>
+
+        رجوع للمادة
+
+      </a>
+
+
+    </div>
+
+
+    <div>
+
+      <div class="report-title">
+        📋 تقرير مفصّل
+      </div>
+
+      ${reportHTML}
+
+    </div>
+
+  `;
+
+  // حفظ نسخة ثابتة من النتيجة الرسمية قبل بدء أي مراجعة
+  originalResult = {
+    questions: questions.slice(),
+    answers: answers.slice(),
+    wrongSet: wrongSet.map(q=>({...q})),
+    correct: correct,
+    wrong: wrong,
+    answered: answered,
+    score: score,
+    resultHTML: document.getElementById("app").innerHTML,
+    studentName: studentName,
+    studentCode: studentCode
+  };
+
+  setTimeout(()=>{
+
+    const ring=
+      document.getElementById("ringFill");
+
+    if(ring){
+
+      ring.style.strokeDashoffset=
+        offset;
+
+    }
+
+  },100);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* RETRY WRONG - مراجعة منفصلة */
+
+function retryWrong(){
+
+  if(!originalResult || !originalResult.wrongSet.length){
+    return;
+  }
+
+  const pool=originalResult.wrongSet.map(q=>({
+    t:q.t,
+    o:q.o,
+    a:q.a
+  }));
+
+  // بدء المراجعة دون تغيير الدرجة الأصلية
+  init(pool, true);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* REVIEW RESULT - نتيجة التدريب فقط */
+
+function showReviewResult(){
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+  const reviewCorrect=correct;
+  const reviewWrong=wrong;
+  const reviewSkipped=total-answered;
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="font-size:45px;margin-bottom:12px;">📚</div>
+
+      <div class="result-grade">انتهت مراجعة الأخطاء</div>
+
+      <div class="result-sub" style="margin-bottom:20px;">
+        دي نتيجة التدريب فقط، ودرجتك الأصلية لم تتغير.
+      </div>
+
+      <div class="result-stats">
+
+        <div class="rs">
+          <div class="n" style="color:var(--success)">${reviewCorrect}</div>
+          <div class="l">إجابة صحيحة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--danger)">${reviewWrong}</div>
+          <div class="l">إجابة خاطئة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--gold)">${reviewSkipped}</div>
+          <div class="l">لم تتم الإجابة</div>
+        </div>
+
+      </div>
+
+      <div style="
+        margin-top:22px;
+        padding:15px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:var(--bg2);
+      ">
+        <div style="color:var(--text2);font-size:13px;margin-bottom:6px;">
+          درجتك الرسمية في الامتحان الأصلي
+        </div>
+        <div style="font-size:32px;font-weight:900;color:var(--gold);">
+          ${originalResult ? originalResult.score : 0}%
+        </div>
+        <div style="color:var(--success);font-size:12px;margin-top:5px;">
+          🔒 الدرجة الأصلية ثابتة
+        </div>
+      </div>
+
+      <div class="result-actions">
+
+        <button class="btn btn-retry" type="button" onclick="showOriginalResult()">
+          <i class="fa-solid fa-arrow-right"></i>
+          العودة إلى النتيجة الأصلية
+        </button>
+
+        <button class="btn btn-home" type="button" onclick="init(QUESTIONS)">
+          <i class="fa-solid fa-shuffle"></i>
+          امتحان جديد
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("prog-bar").style.width="100%";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* RESTORE ORIGINAL RESULT */
+
+function showOriginalResult(){
+
+  if(!originalResult){
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  questions=originalResult.questions.slice();
+  answers=originalResult.answers.slice();
+  wrongSet=originalResult.wrongSet.map(q=>({...q}));
+
+  correct=originalResult.correct;
+  wrong=originalResult.wrong;
+  answered=originalResult.answered;
+
+  studentName=originalResult.studentName;
+  studentCode=originalResult.studentCode;
+
+  current=Math.max(0, questions.length-1);
+  reviewMode=false;
+
+  document.getElementById("app").innerHTML=originalResult.resultHTML;
+
+  updateTop();
+  document.getElementById("prog-bar").style.width="100%";
+
+  const ring=document.getElementById("ringFill");
+
+  if(ring){
+    const circumference=2*Math.PI*45;
+    const offset=circumference-(originalResult.score/100)*circumference;
+
+    ring.style.strokeDashoffset=circumference;
+
+    setTimeout(()=>{
+      const currentRing=document.getElementById("ringFill");
+      if(currentRing){
+        currentRing.style.strokeDashoffset=offset;
+      }
+    },100);
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+/* THEME */
+
+const themeBtn=
+  document.getElementById("themeBtn");
+
+let theme=
+  localStorage.getItem("theme") || "dark";
+
+
+function applyTheme(value){
+
+  theme=value;
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    value==="dark" ? "dark" : ""
+  );
+
+  if(themeBtn){
+
+    themeBtn.textContent=
+      value==="dark" ? "☀️" : "🌙";
+
+  }
+
+  localStorage.setItem(
+    "theme",
+    value
+  );
+
+}
+
+
+applyTheme(theme);
+
+
+if(themeBtn){
+
+  themeBtn.addEventListener(
+    "click",
+    ()=>{
+
+      applyTheme(
+        theme==="dark"
+        ? "light"
+        : "dark"
+      );
+
+    }
+  );
+
+}
+
+
+/* START */
+
+init(QUESTIONS);
+
+</script>
+<div style="
+  max-width:650px;
+  margin:35px auto;
+  padding:0 20px;
+  text-align:center;
+  direction:rtl;
+">
+
+  <div style="
+    color:#d4af37;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:18px;
+  ">
+    ✦ تواصل معنا ✦
+  </div>
+
+  <div style="
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  ">
+
+    <a href="https://wa.me/201010306545"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 تواصل معنا على واتساب
+    </a>
+
+    <a href="https://chat.whatsapp.com/JR7eCQQn9HLGoCYUfA1NNF?mode=gi_t"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 انضم إلى جروب الواتساب
+    </a>
+
+  </div>
+</div>
+</body>
+</html>
